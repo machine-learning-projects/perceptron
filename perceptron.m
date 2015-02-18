@@ -4,10 +4,13 @@ w = zeros(1, size(X,2)); b = 0; k = 0; eta = 1;
 % R = max(sum(X.^2, 2));    % R^2 value
 R = 1;  %R^2 = 1, so this is hard-coded to save time
 err_train = zeros(193, 2);
-err_test = [2, 193];
+err_test = zeros(193, 2);
 u = 1;  % interval counter
 u_e = 1;
 idx = 1;
+
+% TODO: Order
+
 while (u_e < size(X, 1)) % less than number of features
 %     for i = 1 : size(X, 1)	% go over articles
     u_e = u + 99;
@@ -24,13 +27,13 @@ while (u_e < size(X, 1)) % less than number of features
     end
     
     % train error rate
-    mis_train = 0;
-    for (i = u : u_e)
-        if (sign(dot(w, X(i, :)) + b) ~= Y(i))  % incorrectly classified
-            mis_train = mis_train + 1;
-        end
-    end
-        
+%     mis_train = 0;
+%     for (i = 1 : size(X, 1))
+%         if (sign(dot(w, X(i, :)) + b) ~= Y(i))  % incorrectly classified
+%             mis_train = mis_train + 1;
+%         end
+%     end
+    
     % test error rate
     mis_test = 0;  % number of incorrectly classified tests    
     for (i = 1 : size(F, 1))  % go over the test articles
@@ -41,8 +44,8 @@ while (u_e < size(X, 1)) % less than number of features
     
     % keep track of error rates
     u = u + 100; % increment for next set of 100
-    err_train(idx, 1) = idx;
-    err_train(idx, 2) = (mis_train / u * 100);
+%     err_train(idx, 1) = idx;
+%     err_train(idx, 2) = (mis_train / u * 100);
     err_test(idx, 1) = idx;
     err_test(idx, 2) = (mis_test / size(F, 1) * 100);
     idx = idx + 1;
