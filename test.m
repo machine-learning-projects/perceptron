@@ -13,7 +13,8 @@ L = load('rcv1.test.labels');
 % training orders
 O = load('training.orders');
 
-% [w, b] = perceptron(X, Y, F, L);
-perceptron(X, Y, F, L);
+% perceptron
+[w, b, err_train, err_test] = perceptron(X, Y, F, L);
 
-% b
+% notify when finished running
+beep
