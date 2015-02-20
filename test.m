@@ -14,7 +14,7 @@ L = load('rcv1.test.labels');
 O = load('training.orders');
 
 % perceptron
-[w, b, err_train, err_test] = perceptron(X, Y, F, L);
+perceptron;
 
 % notify when finished running
 beep
